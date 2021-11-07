@@ -25,4 +25,5 @@ git checkout branch
 git branch -m <rename_branch_name_here>
 git branch
 
-if you using IDE, you can easy to work with git without these codes.
+====== Attention =======
+if you are using IDE, you can easy to work with git without these codes.
