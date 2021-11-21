@@ -11,11 +11,18 @@ package newpackage1;
  */
 public class App {
     public static void main(String[] args) {
-        Vehicle v1;
-        v1 = new Car();
-        v1.move();
-        v1 = new Helicopter();
-        v1.move();
+//        Vehicle v1;
+//        v1 = new Car();
+//        v1.move();
+//        v1 = new Helicopter();
+//        v1.move();
+        
+        
+        ////
+        
+        
+        Vehicle vehicle = new Boat();
+        Route.travel(vehicle);
         
     }
 }

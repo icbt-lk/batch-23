@@ -10,18 +10,12 @@ package newpackage;
  * @author tharik
  */
 public class App {
-    public static void main(String[] args) {
-        
-        Person p = new Person();
-        p.getFirstName();
-        p.getLastName();
-        
+    public static void main(String[] args) {            
         Lecturer l = new Lecturer("I001", "123V", "John", "Smith");
         System.out.println(l.getFullName());
         
         Person p1;
         
-        p1 = new Person();
         p1 = new Student();
         p1 = new Lecturer();
     }
