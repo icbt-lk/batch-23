@@ -3,23 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.lecture02;
+package Lecture03;
 
 /**
  *
  * @author trevi
  */
 public class App {
-    //This is the main Method in Java
-    public static void main(String[] args)
-    {
-        Student.a = "a";
-        Student st = new Student();
-        st.a = "a2";
-        st.b = "b";
+    
+    public static void main(String[] args){
         
-        System.out.println(st.a);
-        System.out.println(st.a);
+        Student st = new Student();
+        st.setId("ST001");
+        st.setFirstName("Simon");
+        st.setLastName("Smith");
+        
+        Student st2 = new Student("ST001","Simon","Smith");
     }
+    
+    
     
 }
