@@ -25,13 +25,17 @@
             String username = request.getParameter("username");
             String password = request.getParameter("password");
             
-            if (username != null) {
-                out.print("<h1>" + username + "</h1>");
+            if (password != null){
+            if (Util.authenticate(username, password)) {
+                out.print("<h1> Welcome "+username+"</h1>"); 
             }
-            
-            if (password != null) {
-                out.print("<h1>" + password + "</h1>");
+            else {
+            response.sendRedirect("login.jsp");
             }
+            }        
+//             {
+//                out.print("<h1>" + password + "</h1>");
+//            }
             
             for(Person p : Util.getPersons()) {
                 out.print("<p1>" + p.getFullName() + "</p1><br/>");

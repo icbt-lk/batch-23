@@ -21,4 +21,15 @@ public class Util {
         
         return persons;
     }
+    public static boolean authenticate (String username, String password){
+        boolean hasAuthenticated = false;
+        
+        if(username != null && password !=null){
+//            if(username.equals("icbt") && password.equals("icbt123")){
+//                hasAuthenticated = true;
+//            }
+            hasAuthenticated = username.equals("icbt") && password.equals("icbt123");
+        }
+        return hasAuthenticated;
+    }
 }
