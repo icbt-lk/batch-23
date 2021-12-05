@@ -21,7 +21,18 @@
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
     </head>
     <body>
-        <%            
+        <%   
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+            
+            if (username != null) {
+                out.print("<h1>" + username + "</h1>");
+            }
+            
+            if (password != null) {
+                out.print("<h1>" + password + "</h1>");
+            }
+            
             for(Person p : Util.getPersons()) {
                 out.print("<p1>" + p.getFullName() + "</p1><br/>");
             }  
