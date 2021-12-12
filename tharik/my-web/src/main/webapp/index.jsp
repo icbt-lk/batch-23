@@ -4,6 +4,7 @@
     Author     : tharik
 --%>
 
+<%@page import="org.icbt.my.web.User"%>
 <%@page import="java.util.List"%>
 <%@page import="org.icbt.my.web.Util"%>
 <%@page import="org.icbt.my.web.Person"%>
@@ -21,8 +22,9 @@
     </head>
     <body>
         <%   
-            String username = Util.authenticate(request, response, session);
-            out.print("<h1> Welcome " + username + "</h1>");
+            User user = Util.authenticate(request, response, session);
+            out.print("<h1> Welcome " + user.getFirstName() + " "+  user.getLastName()+ "</h1>");
+            out.print("<h2>You nic is " + user.getNic() + "</h2>");
         %>
         <br/>
         <table border="1">
