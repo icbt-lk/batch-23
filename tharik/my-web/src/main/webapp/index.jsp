@@ -23,8 +23,10 @@
     <body>
         <%   
             User user = Util.authenticate(request, response, session);
-            out.print("<h1> Welcome " + user.getFirstName() + " "+  user.getLastName()+ "</h1>");
-            out.print("<h2>You nic is " + user.getNic() + "</h2>");
+            if (user != null ) {
+               out.print("<h1> Welcome " + user.getFirstName() + " "+  user.getLastName()+ "</h1>");
+               out.print("<h2>You nic is " + user.getNic() + "</h2>"); 
+            }
         %>
         <br/>
         <table border="1">
