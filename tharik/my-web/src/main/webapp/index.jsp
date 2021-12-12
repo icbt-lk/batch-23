@@ -21,13 +21,7 @@
     </head>
     <body>
         <%   
-            String username = request.getParameter("username");
-            String password = request.getParameter("password");
-            
-            if (!Util.authenticate(username, password)) {
-                response.sendRedirect("login.jsp"); 
-            } 
-            
+            String username = Util.authenticate(request, response, session);
             out.print("<h1> Welcome " + username + "</h1>");
         %>
         <br/>
