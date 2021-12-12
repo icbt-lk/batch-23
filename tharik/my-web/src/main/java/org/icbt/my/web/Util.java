@@ -37,14 +37,16 @@ public class Util {
         boolean authenticated = authenticatedUser != null;
 
         if (!authenticated) {
-             // If username and password are incorrect/invalid      
-            for (Cookie cookie : request.getCookies()) {
-                if (cookie.getName().equals("session-id")) {
-                    authenticatedUser = (User) session.getAttribute(cookie.getValue());
-                    authenticated = authenticatedUser != null;
-                    break;
-                }
-            } 
+             // If username and password are incorrect/invalid
+            if (request.getCookies() != null) {
+                for (Cookie cookie : request.getCookies()) {
+                    if (cookie.getName().equals("session-id")) {
+                        authenticatedUser = (User) session.getAttribute(cookie.getValue());
+                        authenticated = authenticatedUser != null;
+                        break;
+                    }
+                }  
+            }
             if (!authenticated) {
                 response.sendRedirect("login.jsp"); 
             }
