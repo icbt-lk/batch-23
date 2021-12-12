@@ -5,8 +5,13 @@
  */
 package org.icbt.my.web;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -23,16 +28,38 @@ public class Util {
         return persons;
     }
     
+    public static String authenticate(HttpServletRequest request, HttpServletResponse response, HttpSession session) 
+            throws IOException {
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        boolean authenticated = Util.authenticate(username, password);
+
+        if (!authenticated) {
+             // If username and password are incorrect/invalid      
+            for (Cookie cookie : request.getCookies()) {
+                if (cookie.getName().equals("session-id")) {
+                    username = session.getAttribute(cookie.getValue()).toString();
+                    authenticated = username != null;
+                    break;
+                }
+            } 
+            if (!authenticated) {
+                response.sendRedirect("login.jsp"); 
+            }
+        }
+
+        // If username and password are correct
+        String sessionId = "123"; 
+        session.setAttribute(sessionId, username);
+        response.addCookie(new Cookie("session-id", sessionId));
+        return username;
+    }
     
     public static boolean authenticate(String username, String password) {
         boolean hasAuthenticated = false;
         
         if (username != null && password != null) {
             // Ideally should load from DB
-
-//            if (username.equals("icbt") && password.equals("icbt123")) {
-//                hasAuthenticated = true;
-//            } 
             hasAuthenticated = username.equals("icbt") && password.equals("icbt123");
         }
         
