@@ -20,10 +20,15 @@
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
     </head>
     <body>
-        <%            
-            for(Person p : Util.getPersons()) {
-                out.print("<p1>" + p.getFullName() + "</p1><br/>");
-            }  
+        <%   
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+            
+            if (!Util.authenticate(username, password)) {
+                response.sendRedirect("login.jsp"); 
+            } 
+            
+            out.print("<h1> Welcome " + username + "</h1>");
         %>
         <br/>
         <table border="1">
