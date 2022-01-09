@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<endpoints version="2.0" xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime">
+  <endpoint implementation="icbt.ICBTService" name="ICBTService" url-pattern="/ICBTService"/>
+  <endpoint implementation="icbt.NewWebService" name="NewWebService" url-pattern="/NewWebService"/>
+</endpoints>
