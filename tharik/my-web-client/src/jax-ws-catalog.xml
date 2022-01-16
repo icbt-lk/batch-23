@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://localhost:8082/my-web-service/ICBTService?wsdl" uri="wsdl/localhost_8082/my-web-service/ICBTService.wsdl"/>
+    <system systemId="http://localhost:8082/my-web-service/ICBTService?xsd=1" uri="wsdl/localhost_8082/my-web-service/ICBTService.xsd_1.xsd"/>
+</catalog>
