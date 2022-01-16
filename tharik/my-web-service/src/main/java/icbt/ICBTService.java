@@ -27,4 +27,15 @@ public class ICBTService {
         DBUtil util = new DBUtil();
         return util.getPersons();
     }
+    
+    @WebMethod(operationName = "authenticate")
+    public User authenticate(@WebParam(name = "username")String username, @WebParam(name = "password") String password) {
+        DBUtil util = new DBUtil();
+        User user = util.getUser(username);
+        
+        if (user.getPassword().equals(password)) {
+            return user;
+        }
+        return new User();
+    }
 }

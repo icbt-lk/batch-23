@@ -4,8 +4,8 @@
     Author     : tharik
 --%>
 
+<%@page import="icbt.User"%>
 <%@page import="icbt.Person"%>
-<%@page import="org.icbt.my.web.User"%>
 <%@page import="java.util.List"%>
 <%@page import="org.icbt.my.web.Util"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
