@@ -59,13 +59,19 @@ public class Util {
         return authenticatedUser;
     }
     
-    public static User authenticate(String username, String password) {        
+    public static User authenticate(String username, String password) {  
+        User user = null;
+        
         if (username != null && password != null) {
             ICBTService_Service service = new ICBTService_Service();
             ICBTService proxy = service.getICBTServicePort();
             
-            return proxy.authenticate(username, password);
+            user = proxy.authenticate(username, password);
+            
+            if (user.getUsername() == null) {
+                user = null;
+            }
         }
-        return null;
+        return user;
     }
 }
