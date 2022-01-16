@@ -4,30 +4,49 @@
 <xsd:import namespace="http://icbt/" schemaLocation="http://localhost:8082/my-web-service/ICBTService?xsd=1"/>
 </xsd:schema>
 </types>
-<message name="getPerson">
-<part name="parameters" element="tns:getPerson"/>
-</message>
-<message name="getPersonResponse">
-<part name="parameters" element="tns:getPersonResponse"/>
-</message>
 <message name="hello">
 <part name="parameters" element="tns:hello"/>
 </message>
 <message name="helloResponse">
 <part name="parameters" element="tns:helloResponse"/>
 </message>
+<message name="getPerson">
+<part name="parameters" element="tns:getPerson"/>
+</message>
+<message name="getPersonResponse">
+<part name="parameters" element="tns:getPersonResponse"/>
+</message>
+<message name="getPersons">
+<part name="parameters" element="tns:getPersons"/>
+</message>
+<message name="getPersonsResponse">
+<part name="parameters" element="tns:getPersonsResponse"/>
+</message>
 <portType name="ICBTService">
-<operation name="getPerson">
-<input wsam:Action="http://icbt/ICBTService/getPersonRequest" message="tns:getPerson"/>
-<output wsam:Action="http://icbt/ICBTService/getPersonResponse" message="tns:getPersonResponse"/>
-</operation>
 <operation name="hello">
 <input wsam:Action="http://icbt/ICBTService/helloRequest" message="tns:hello"/>
 <output wsam:Action="http://icbt/ICBTService/helloResponse" message="tns:helloResponse"/>
 </operation>
+<operation name="getPerson">
+<input wsam:Action="http://icbt/ICBTService/getPersonRequest" message="tns:getPerson"/>
+<output wsam:Action="http://icbt/ICBTService/getPersonResponse" message="tns:getPersonResponse"/>
+</operation>
+<operation name="getPersons">
+<input wsam:Action="http://icbt/ICBTService/getPersonsRequest" message="tns:getPersons"/>
+<output wsam:Action="http://icbt/ICBTService/getPersonsResponse" message="tns:getPersonsResponse"/>
+</operation>
 </portType>
 <binding name="ICBTServicePortBinding" type="tns:ICBTService">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<operation name="hello">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
 <operation name="getPerson">
 <soap:operation soapAction=""/>
 <input>
@@ -37,7 +56,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="hello">
+<operation name="getPersons">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

@@ -4,6 +4,7 @@
     Author     : tharik
 --%>
 
+<%@page import="java.util.List"%>
 <%@page import="icbt.Person"%>
 <%@page import="icbt.ICBTService"%>
 <%@page import="icbt.ICBTService_Service"%>
@@ -20,7 +21,8 @@
                 ICBTService_Service service = new ICBTService_Service();
                 ICBTService proxy = service.getICBTServicePort();
                 
-                Person p = proxy.getPerson();
+                List<Person> persons = proxy.getPersons();
+                Person p = persons.get(0);
                 out.print(p.getFirstName());
             %>
         </h1>
@@ -34,5 +36,10 @@
                 out.print(p.getNic());
             %>
         </h3>
+        <h4>
+            <%
+                out.print(p.getId());
+            %>
+        </h4>
     </body>
 </html>
