@@ -4,11 +4,11 @@
 <xsd:import namespace="http://icbt/" schemaLocation="http://localhost:8082/my-web-service/ICBTService?xsd=1"/>
 </xsd:schema>
 </types>
-<message name="hello">
-<part name="parameters" element="tns:hello"/>
+<message name="authenticate">
+<part name="parameters" element="tns:authenticate"/>
 </message>
-<message name="helloResponse">
-<part name="parameters" element="tns:helloResponse"/>
+<message name="authenticateResponse">
+<part name="parameters" element="tns:authenticateResponse"/>
 </message>
 <message name="getPerson">
 <part name="parameters" element="tns:getPerson"/>
@@ -23,9 +23,9 @@
 <part name="parameters" element="tns:getPersonsResponse"/>
 </message>
 <portType name="ICBTService">
-<operation name="hello">
-<input wsam:Action="http://icbt/ICBTService/helloRequest" message="tns:hello"/>
-<output wsam:Action="http://icbt/ICBTService/helloResponse" message="tns:helloResponse"/>
+<operation name="authenticate">
+<input wsam:Action="http://icbt/ICBTService/authenticateRequest" message="tns:authenticate"/>
+<output wsam:Action="http://icbt/ICBTService/authenticateResponse" message="tns:authenticateResponse"/>
 </operation>
 <operation name="getPerson">
 <input wsam:Action="http://icbt/ICBTService/getPersonRequest" message="tns:getPerson"/>
@@ -38,7 +38,7 @@
 </portType>
 <binding name="ICBTServicePortBinding" type="tns:ICBTService">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="hello">
+<operation name="authenticate">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

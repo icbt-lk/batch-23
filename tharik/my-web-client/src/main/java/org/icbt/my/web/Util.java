@@ -8,6 +8,7 @@ package org.icbt.my.web;
 import icbt.ICBTService;
 import icbt.ICBTService_Service;
 import icbt.Person;
+import icbt.User;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -60,13 +61,10 @@ public class Util {
     
     public static User authenticate(String username, String password) {        
         if (username != null && password != null) {
-            // Ideally should load from DB
-            User user = new User("icbt", "icbt123",1, "123V", "John", "Smith");
+            ICBTService_Service service = new ICBTService_Service();
+            ICBTService proxy = service.getICBTServicePort();
             
-            if (username.equals(user.getUsername()) 
-                    && password.equals(user.getPassword())) {
-               return user; 
-            } 
+            return proxy.authenticate(username, password);
         }
         return null;
     }
