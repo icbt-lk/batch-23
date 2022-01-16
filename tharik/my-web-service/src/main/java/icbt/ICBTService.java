@@ -31,9 +31,8 @@ public class ICBTService {
     @WebMethod(operationName = "authenticate")
     public User authenticate(@WebParam(name = "username")String username, @WebParam(name = "password") String password) {
         DBUtil util = new DBUtil();
-        User user = util.getUser(username);
-        
-        if (user.getPassword().equals(password)) {
+        User user = util.getUser(username);        
+        if (user.getPassword() != null && user.getPassword().equals(Utils.getHash(password))) {
             return user;
         }
         return new User();
