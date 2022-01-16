@@ -15,24 +15,11 @@ import javax.jws.WebParam;
  * @author tharik
  */
 @WebService(serviceName = "ICBTService")
-public class ICBTService {
-
-    /**
-     * This is a sample web service operation
-     */
-    @WebMethod(operationName = "hello")
-    public String hello(@WebParam(name = "name") String txt) {
-        return "@@---Welcome " + txt + " !!!!!---@@";
-    }
-    
+public class ICBTService {    
     @WebMethod(operationName = "getPerson")
-    public Person getPerson() {
-        Person p = new Person();
-        p.setFirstName("John");
-        p.setLastName("Smith");
-        p.setNic("456V");
-        
-        return p;
+    public Person getPerson(@WebParam(name = "id") int id) {
+        DBUtil util = new DBUtil();
+        return util.getPerson(id);
     }
     
     @WebMethod(operationName = "getPersons")
