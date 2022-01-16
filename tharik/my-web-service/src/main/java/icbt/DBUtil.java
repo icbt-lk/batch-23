@@ -22,17 +22,15 @@ public class DBUtil {
     private String url = "jdbc:mysql://localhost:3306/batch23";
     private String user = "";
     private String pass = "";
-    private String query = "SELECT * FROM person";
     
     public List<Person> getPersons() {
-        List<Person> persons = new ArrayList<>();
-        
+        List<Person> persons = new ArrayList<>();     
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection(url, user, pass);
             
             Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery(query);
+            ResultSet rs = st.executeQuery("SELECT * FROM person");
             
             while(rs.next()) {
                 Person p = new Person();
@@ -42,17 +40,35 @@ public class DBUtil {
                 p.setNic(rs.getString("nic"));
                 
                 persons.add(p);
-            }
-            
+            } 
         } catch(SQLException e) {
             System.out.println(e);
         } catch(ClassNotFoundException e) {
             System.out.println(e);
-        }
-        
-        
+        }  
         return persons;
     }
     
-    
+    public Person getPerson(int id) {
+        Person p = new Person();     
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(url, user, pass);
+            
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM person where id=" + id);
+            
+            while(rs.next()) {
+                p.setId(rs.getInt("id"));
+                p.setFirstName(rs.getString("first_name"));
+                p.setLastName(rs.getString("last_name"));
+                p.setNic(rs.getString("nic"));
+            } 
+        } catch(SQLException e) {
+            System.out.println(e);
+        } catch(ClassNotFoundException e) {
+            System.out.println(e);
+        }  
+        return p;
+    }
 }
