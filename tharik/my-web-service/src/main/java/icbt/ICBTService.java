@@ -5,6 +5,7 @@
  */
 package icbt;
 
+import java.util.List;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -32,5 +33,11 @@ public class ICBTService {
         p.setNic("456V");
         
         return p;
+    }
+    
+    @WebMethod(operationName = "getPersons")
+    public List<Person> getPersons() {
+        DBUtil util = new DBUtil();
+        return util.getPersons();
     }
 }

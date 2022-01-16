@@ -15,5 +15,6 @@ Any value defined here will override the pom.xml file value but is only applicab
 -->
         <org-netbeans-modules-maven-jaxws._5f_C_5f_ICBTService>http://localhost:8082/my-web-service/ICBTService?wsdl</org-netbeans-modules-maven-jaxws._5f_C_5f_ICBTService>
         <netbeans.hint.jdkPlatform>JDK_1.8</netbeans.hint.jdkPlatform>
+        <org-netbeans-modules-maven-j2ee.netbeans_2e_hint_2e_deploy_2e_server>Tomcat</org-netbeans-modules-maven-j2ee.netbeans_2e_hint_2e_deploy_2e_server>
     </properties>
 </project-shared-configuration>

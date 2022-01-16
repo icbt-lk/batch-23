@@ -4,9 +4,32 @@
 
 <xs:element name="getPersonResponse" type="tns:getPersonResponse"/>
 
+<xs:element name="getPersons" type="tns:getPersons"/>
+
+<xs:element name="getPersonsResponse" type="tns:getPersonsResponse"/>
+
 <xs:element name="hello" type="tns:hello"/>
 
 <xs:element name="helloResponse" type="tns:helloResponse"/>
+
+<xs:complexType name="getPersons">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getPersonsResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:person" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="person">
+<xs:sequence>
+<xs:element name="firstName" type="xs:string" minOccurs="0"/>
+<xs:element name="id" type="xs:int"/>
+<xs:element name="lastName" type="xs:string" minOccurs="0"/>
+<xs:element name="nic" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
 
 <xs:complexType name="getPerson">
 <xs:sequence/>
@@ -15,14 +38,6 @@
 <xs:complexType name="getPersonResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:person" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="person">
-<xs:sequence>
-<xs:element name="firstName" type="xs:string" minOccurs="0"/>
-<xs:element name="lastName" type="xs:string" minOccurs="0"/>
-<xs:element name="nic" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
