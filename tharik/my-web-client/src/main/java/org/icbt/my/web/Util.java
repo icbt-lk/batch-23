@@ -24,9 +24,7 @@ import javax.servlet.http.HttpSession;
  */
 public class Util {    
     public static List<Person> getPersons() {        
-        ICBTService_Service service = new ICBTService_Service();
-        ICBTService proxy = service.getICBTServicePort();
-        return proxy.getPersons();
+        return Proxy.getInstance().getPersons();
     }
     
     public static User authenticate(HttpServletRequest request, HttpServletResponse response, HttpSession session) 
@@ -63,10 +61,7 @@ public class Util {
         User user = null;
         
         if (username != null && password != null) {
-            ICBTService_Service service = new ICBTService_Service();
-            ICBTService proxy = service.getICBTServicePort();
-            
-            user = proxy.authenticate(username, password);
+            user = Proxy.getInstance().authenticate(username, password);
             
             if (user.getUsername() == null) {
                 user = null;
