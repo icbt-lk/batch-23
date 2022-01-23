@@ -72,6 +72,60 @@ public class DBUtil {
         return p;
     }
     
+    public boolean addPerson(Person p) {     
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(url, user, pass);
+            
+            Statement st = conn.createStatement();
+            st.executeUpdate("INSERT INTO person (id, first_name, last_name, nic) "
+                    + "VALUES "
+                    + "(" + p.getId() + ", '" + p.getFirstName() 
+                    + "', '" + p.getLastName() + "', '" + p.getNic() + "')");
+            return true;
+        } catch(SQLException e) {
+            System.out.println(e);
+        } catch(ClassNotFoundException e) {
+            System.out.println(e);
+        }  
+        return false;
+    }
+    
+    public boolean updatePerson(Person p) {     
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(url, user, pass);
+            
+            Statement st = conn.createStatement();
+            st.executeUpdate("UPDATE person SET first_name = '" + p.getFirstName() + "', "
+                                + "last_name = '" + p.getLastName() + "', "
+                                + "nic = '"+ p.getNic() +"' "
+                                + "WHERE (id = " + p.getId() + ")");
+            return true;
+        } catch(SQLException e) {
+            System.out.println(e);
+        } catch(ClassNotFoundException e) {
+            System.out.println(e);
+        }  
+        return false;
+    }
+    
+    public boolean deletePerson(int id) {     
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(url, user, pass);
+            
+            Statement st = conn.createStatement();
+            st.executeUpdate("DELETE FROM person WHERE (id = "+ id + ")");
+            return true;
+        } catch(SQLException e) {
+            System.out.println(e);
+        } catch(ClassNotFoundException e) {
+            System.out.println(e);
+        }  
+        return false;
+    }
+    
     public User getUser(String username) {
         User u = new User();     
         try {

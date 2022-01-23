@@ -22,6 +22,24 @@ public class ICBTService {
         return util.getPerson(id);
     }
     
+    @WebMethod(operationName = "addPerson")
+    public boolean addPerson(@WebParam(name = "person") Person person) {
+        DBUtil util = new DBUtil();
+        return util.addPerson(person);
+    }
+    
+    @WebMethod(operationName = "updatePerson")
+    public boolean updatePerson(@WebParam(name = "person") Person person) {
+        DBUtil util = new DBUtil();
+        return util.updatePerson(person);
+    }
+    
+    @WebMethod(operationName = "deletePerson")
+    public boolean deletePerson(@WebParam(name = "id") int id) {
+        DBUtil util = new DBUtil();
+        return util.deletePerson(id);
+    }
+    
     @WebMethod(operationName = "getPersons")
     public List<Person> getPersons() {
         DBUtil util = new DBUtil();
