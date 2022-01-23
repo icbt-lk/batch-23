@@ -17,17 +17,12 @@ import java.util.List;
  *
  * @author tharik
  */
-public class DBUtil {
-    
-    private String url = "jdbc:mysql://localhost:3306/batch23";
-    private String user = "";
-    private String pass = "";
-    
+public class DBUtil {    
     public List<Person> getPersons() {
         List<Person> persons = new ArrayList<>();     
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection(url, user, pass);
+            Connection conn = ConnectonUtil.getInstance();
             
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM person");
@@ -53,7 +48,7 @@ public class DBUtil {
         Person p = new Person();     
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection(url, user, pass);
+            Connection conn = ConnectonUtil.getInstance();
             
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM person where id=" + id);
@@ -75,7 +70,7 @@ public class DBUtil {
     public boolean addPerson(Person p) {     
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection(url, user, pass);
+            Connection conn = ConnectonUtil.getInstance();
             
             Statement st = conn.createStatement();
             st.executeUpdate("INSERT INTO person (id, first_name, last_name, nic) "
@@ -94,7 +89,7 @@ public class DBUtil {
     public boolean updatePerson(Person p) {     
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection(url, user, pass);
+            Connection conn = ConnectonUtil.getInstance();
             
             Statement st = conn.createStatement();
             st.executeUpdate("UPDATE person SET first_name = '" + p.getFirstName() + "', "
@@ -113,7 +108,7 @@ public class DBUtil {
     public boolean deletePerson(int id) {     
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection(url, user, pass);
+            Connection conn = ConnectonUtil.getInstance();
             
             Statement st = conn.createStatement();
             st.executeUpdate("DELETE FROM person WHERE (id = "+ id + ")");
@@ -130,7 +125,7 @@ public class DBUtil {
         User u = new User();     
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection(url, user, pass);
+            Connection conn = ConnectonUtil.getInstance();
             
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM users JOIN person on person_id = id WHERE username='" + username +"'");
