@@ -5,6 +5,10 @@
  */
 package org.icbt.my.web;
 
+import icbt.ICBTService;
+import icbt.ICBTService_Service;
+import icbt.Person;
+import icbt.User;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,13 +24,9 @@ import javax.servlet.http.HttpSession;
  */
 public class Util {    
     public static List<Person> getPersons() {        
-        List<Person> persons = new ArrayList<>();
-        
-        persons.add(new Person("123V", "John", "Smith"));
-        persons.add(new Person("124V", "George", "Whey"));
-        persons.add(new Person("666V", "James", "Bond"));
-        
-        return persons;
+        ICBTService_Service service = new ICBTService_Service();
+        ICBTService proxy = service.getICBTServicePort();
+        return proxy.getPersons();
     }
     
     public static User authenticate(HttpServletRequest request, HttpServletResponse response, HttpSession session) 
@@ -59,16 +59,19 @@ public class Util {
         return authenticatedUser;
     }
     
-    public static User authenticate(String username, String password) {        
+    public static User authenticate(String username, String password) {  
+        User user = null;
+        
         if (username != null && password != null) {
-            // Ideally should load from DB
-            User user = new User("icbt", "icbt123", "123V", "John", "Smith");
+            ICBTService_Service service = new ICBTService_Service();
+            ICBTService proxy = service.getICBTServicePort();
             
-            if (username.equals(user.getUsername()) 
-                    && password.equals(user.getPassword())) {
-               return user; 
-            } 
+            user = proxy.authenticate(username, password);
+            
+            if (user.getUsername() == null) {
+                user = null;
+            }
         }
-        return null;
+        return user;
     }
 }

@@ -1,0 +1,29 @@
+=====GIT STEP=====
+
++=+=+=+= manual git steps =+=+=+=+
+
+git clone <your project link>
+cd <your project folder>
+git branch
+git checkout <branch_name> --> select branch in the git
+git branch
+
+git pull -> git pull mean get all changes.
+
+=-=-=-=-add New branch-=-=-=-=
+git checkout -b <branch_name>
+
+======= Commit ========
+
+git add .
+git commit -m "your commit message here"
+git push
+
+===========Branch rename==========
+
+git checkout branch
+git branch -m <rename_branch_name_here>
+git branch
+
+====== Attention =======
+if you are using IDE, you can easy to work with git without these codes.

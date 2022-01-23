@@ -4,10 +4,10 @@
     Author     : tharik
 --%>
 
-<%@page import="org.icbt.my.web.User"%>
+<%@page import="icbt.User"%>
+<%@page import="icbt.Person"%>
 <%@page import="java.util.List"%>
 <%@page import="org.icbt.my.web.Util"%>
-<%@page import="org.icbt.my.web.Person"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

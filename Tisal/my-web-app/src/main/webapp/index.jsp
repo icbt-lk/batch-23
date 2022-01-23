@@ -1,13 +1,13 @@
 <%-- 
     Document   : index
-    Created on : Nov 28, 2021, 9:28:00 AM
-    Author     : tharik
+    Created on : Dec 5, 2021, 8:17:58 AM
+    Author     : Tisal Thenuwara 
 --%>
 
-<%@page import="org.icbt.my.web.User"%>
+
+<%@page import="com.toxic.my.web.app.Util"%>
+<%@page import="com.toxic.my.web.app.Person"%>
 <%@page import="java.util.List"%>
-<%@page import="org.icbt.my.web.Util"%>
-<%@page import="org.icbt.my.web.Person"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -22,11 +22,24 @@
     </head>
     <body>
         <%   
-            User user = Util.authenticate(request, response, session);
-            if (user != null ) {
-               out.print("<h1> Welcome " + user.getFirstName() + " "+  user.getLastName()+ "</h1>");
-               out.print("<h2>You nic is " + user.getNic() + "</h2>"); 
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+            
+            if (password != null){
+            if (Util.authenticate(username, password)) {
+                out.print("<h1> Welcome "+username+"</h1>"); 
             }
+            else {
+            response.sendRedirect("login.jsp");
+            }
+            }        
+//             {
+//                out.print("<h1>" + password + "</h1>");
+//            }
+            
+            for(Person p : Util.getPersons()) {
+                out.print("<p1>" + p.getFullName() + "</p1><br/>");
+            }  
         %>
         <br/>
         <table border="1">
