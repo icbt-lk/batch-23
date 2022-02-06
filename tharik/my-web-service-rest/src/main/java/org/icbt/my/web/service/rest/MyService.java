@@ -20,4 +20,10 @@ public class MyService {
     public Response getMessage(){
        return Response.status(200).entity("Hello World").build();
     }
+    
+    @GET
+    @Path("/hello/{message}")
+    public Response getMessage2(@PathParam("message") String message){
+       return Response.status(200).entity(message).build();
+    }
 }
