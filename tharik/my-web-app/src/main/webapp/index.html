@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Start Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script>
+            const url='http://localhost:8082/my-web-service-rest/person/';
+            
+            function getPerson() {
+                var id = document.getElementById("txtID").value;
+                
+                const options = {
+                       method: "GET",
+                       headers: new Headers({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'}),
+                       mode: 'no-cors'
+                };
+
+                fetch(url + id, options)
+                .then(res => res.json())
+                .then(data => {
+                        document.getElementById('txtID').value = data.id;
+                        document.getElementById('txtNIC').value = data.nic;
+                        document.getElementById('txtFirstName').value = data.firstName;
+                        document.getElementById('txtLastName').value = data.lastName;
+                });  
+            }
+            
+            function addPerson() {
+                (async () => {
+                    const person = {
+                                    "id": parseInt(document.getElementById('txtID').value), 
+                                    "nic": document.getElementById('txtNIC').value,
+                                    "firstName": document.getElementById('txtFirstName').value,
+                                    "lastName": document.getElementById('txtLastName').value
+                                    };
+
+                    const options = {
+                      method: 'POST',
+                      headers: {
+                        'content-type': 'application/json',
+                        'Accept': 'application/json'
+                      },
+                      body: JSON.stringify(person)
+                    };
+                    
+                    fetch(url, options);
+                })();  
+            }
+            
+            function updatePerson() {
+                (async () => {
+                    const person = {
+                                    "id": parseInt(document.getElementById('txtID').value), 
+                                    "nic": document.getElementById('txtNIC').value,
+                                    "firstName": document.getElementById('txtFirstName').value,
+                                    "lastName": document.getElementById('txtLastName').value
+                                    };
+
+                    const options = {
+                      method: 'PUT',
+                      headers: {
+                        'content-type': 'application/json',
+                        'Accept': 'application/json'
+                      },
+                      body: JSON.stringify(person)
+                    };
+                    
+                    fetch(url, options);
+                })();  
+            }
+            
+              function deletePerson() {
+                (async () => {
+                    var id= document.getElementById("txtID").value
+                    const rawResponse = await fetch(url + id, {
+                      method: 'DELETE',
+                      headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*'
+                      }
+                    });
+                    const content = await rawResponse.json();
+              })(); 
+            }
+        </script>
+    </head>
+    <body>
+        ID : <input type ="text" id="txtID" /> <br/>
+        First Name : <input type ="text" id="txtFirstName" /> <br/>
+        Last Name : <input type ="text" id="txtLastName" /> <br/>
+        NIC : <input type ="text" id="txtNIC" /> <br/>
+        
+        <button id="btnGetPerson" onclick="getPerson()">Get Person</button><br/>
+        <button id="btnAddPerson" onclick="addPerson()">Add Person</button><br/>
+        <button id="btnAddPerson" onclick="updatePerson()">Update Person</button><br/>
+        <button id="btnAddPerson" onclick="deletePerson()">Delete Person</button><br/>
+    </body>
+</html>
